@@ -2,15 +2,14 @@
 // Created by sebas on 09.12.2023.
 //
 
-#include "ExtrapolationCalculator.h"
+#include "FileReader.h"
 #include "gtest/gtest.h"
 
-class ExtrapolationCalculatorFixture : public ::testing::Test {
+class FileReaderFixture : public ::testing::Test {
 protected:
-    ExtrapolationCalculator* extrapolationCalculator;
     virtual void SetUp() {
-        extrapolationCalculator = new ExtrapolationCalculator();
-        matrix = new matrixOfWork();
+        fileReader = new FileReader();
+        resultingMatrix = new matrixOfWork();
         calculationLine line;
         calculatedLines lines;
         line.push_back(0);
@@ -20,7 +19,7 @@ protected:
         line.push_back(12);
         line.push_back(15);
         lines.push_back(line);
-        matrix->push_back(lines);
+        resultingMatrix->push_back(lines);
         line.clear();
         lines.clear();
         line.push_back(1);
@@ -30,7 +29,7 @@ protected:
         line.push_back(15);
         line.push_back(21);
         lines.push_back(line);
-        matrix->push_back(lines);
+        resultingMatrix->push_back(lines);
         line.clear();
         lines.clear();
         line.push_back(10);
@@ -40,23 +39,17 @@ protected:
         line.push_back(30);
         line.push_back(45);
         lines.push_back(line);
-        matrix->push_back(lines);
+        resultingMatrix->push_back(lines);
     }
     virtual void TearDown() {
-        delete extrapolationCalculator;
-        delete matrix;
+        delete fileReader;
     }
-    matrixOfWork *matrix;
+    FileReader* fileReader;
+    matrixOfWork *resultingMatrix;
 };
 
-TEST_F(ExtrapolationCalculatorFixture, calculate) {
-    int result = extrapolationCalculator->calculate(*matrix);
-    ASSERT_EQ(result, 114);
-}
 
-TEST_F(ExtrapolationCalculatorFixture, backwardsValue) {;
-    int result = extrapolationCalculator->calculate(*matrix);
-    ASSERT_EQ(result, 114);
-    result = extrapolationCalculator->getBackwardValue();
-    ASSERT_EQ(result, 2);
+TEST_F(FileReaderFixture, getCorrectValues) {
+    matrixOfWork readMatrix = fileReader->readFile("test.txt");
+    ASSERT_EQ(readMatrix, *resultingMatrix);
 }
