@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(Libraries)
 add_subdirectory(Libraries)
+add_subdirectory(Google-Tests)
 
 add_executable(day9 main.cpp)
 add_executable(day9_test day9_test.cpp)
