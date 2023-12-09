@@ -1,0 +1,3 @@
+[submodule "day9/Google-Tests/lib"]
+    path = day9/Google-Tests/lib
+    url = https://github.com/google/googletest.git
