@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "FileReader.h"
-#include "ExtrapolationCalculator.h"
+#include "Libraries/FileReader.h"
+#include "Libraries/ExtrapolationCalculator.h"
 
 int main() {
     FileReader fileReader;

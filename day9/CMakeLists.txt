@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.27)
 project(day9)
 
 set(CMAKE_CXX_STANDARD 17)
-set(HEADERS types.h)
 
-add_library(fileReader FileReader.cpp FileReader.h ${HEADERS})
-add_library(calculator ExtrapolationCalculator.cpp ExtrapolationCalculator.h ${HEADERS})
+include_directories(Libraries)
+add_subdirectory(Libraries)
+
 add_executable(day9 main.cpp)
 add_executable(day9_test day9_test.cpp)
 target_link_libraries(day9 fileReader calculator)
