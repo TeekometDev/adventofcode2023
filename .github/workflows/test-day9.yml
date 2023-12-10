@@ -42,5 +42,9 @@ jobs:
       working-directory: ${{github.workspace}}/day9
       # Execute tests defined by the CMake configuration.
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: cmake-build-debug/Google-Tests/Google_Tests_run.exe
+      run: |
+        ls
+        ls cmake-build-debug
+        ls cmake-build-debug/Google-Tests
+        cmake-build-debug/Google-Tests/Google_Tests_run.exe
 
