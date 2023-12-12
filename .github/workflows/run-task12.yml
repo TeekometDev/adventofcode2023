@@ -33,4 +33,4 @@ jobs:
 
     - name: Test
       working-directory: ${{github.workspace}}/day12
-      run: cmake-build-debug/main
+      run: cmake-build-debug/day12
