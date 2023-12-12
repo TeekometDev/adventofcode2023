@@ -1,0 +1,36 @@
+name: Test Day12
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'true'
+
+    - name: Set up CMake and Ninja
+      run: |
+        sudo apt-get install -y cmake
+        sudo apt-get install -y ninja-build
+
+    - name: Build with Ninja
+      working-directory: ${{github.workspace}}/day12
+      run: |
+        cmake -DCMAKE_BUILD_TYPE=Debug -G Ninja -S ${{github.workspace}}/day12 -B ${{github.workspace}}/day11/cmake-build-debug
+        ls
+
+    - name: Build
+      run: cmake --build day12/cmake-build-debug --target Google_Tests_run -j 6
+
+    - name: Test
+      working-directory: ${{github.workspace}}/day12
+      run: cmake-build-debug/Google-Tests/Google_Tests_run
