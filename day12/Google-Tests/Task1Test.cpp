@@ -43,6 +43,6 @@ TEST_F(Day12Task1Fixture, Task1ReaderTestSymbols) {
 }
 
 TEST_F(Day12Task1Fixture, Task1Test1) {
-    informationLines input = reader->read("Google-tests/test.txt");
+    informationLines input = reader->read("Google-Tests/test.txt");
     ASSERT_EQ(calculator->calculate(input), 21);
 }
