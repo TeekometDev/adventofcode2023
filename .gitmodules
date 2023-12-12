@@ -7,3 +7,6 @@
 [submodule "day11/Google-Tests/GTestLib"]
 	path = day11/Google-Tests/GTestLib
 	url = https://github.com/google/googletest.git
+[submodule "day12/Google-Tests/GTestLib"]
+	path = day12/Google-Tests/GTestLib
+	url = https://github.com/google/googletest.git
