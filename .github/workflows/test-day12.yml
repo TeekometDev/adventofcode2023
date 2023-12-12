@@ -25,7 +25,7 @@ jobs:
     - name: Build with Ninja
       working-directory: ${{github.workspace}}/day12
       run: |
-        cmake -DCMAKE_BUILD_TYPE=Debug -G Ninja -S ${{github.workspace}}/day12 -B ${{github.workspace}}/day11/cmake-build-debug
+        cmake -DCMAKE_BUILD_TYPE=Debug -G Ninja -S ${{github.workspace}}/day12 -B ${{github.workspace}}/day12/cmake-build-debug
         ls
 
     - name: Build
