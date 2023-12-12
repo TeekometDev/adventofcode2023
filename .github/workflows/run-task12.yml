@@ -9,7 +9,7 @@ env:
   BUILD_TYPE: Debug
 
 jobs:
-  Build:
+  Run:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
         ls
 
     - name: Build
-      run: cmake --build day12/cmake-build-debug --target main -j 6
+      run: cmake --build day12/cmake-build-debug --target day12 -j 6
 
     - name: Test
       working-directory: ${{github.workspace}}/day12
