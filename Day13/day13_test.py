@@ -25,3 +25,11 @@ def test_game_results():
 def test_game_task_2():
     lines = read_file('testdata.txt')
     assert calculate_part_2(lines) == 400
+
+def test_second_data_task1():
+    lines = read_file('secondtestdata.txt')
+    assert get_note_value(lines) == 709
+
+def test_second_data_task2():
+    lines = read_file('secondtestdata.txt')
+    assert calculate_part_2(lines) == 1400

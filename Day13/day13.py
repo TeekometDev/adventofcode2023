@@ -8,12 +8,15 @@ class GameBoard:
         self.vertical_value = 0
         for line in lines:
             self.lines.append(line.strip())
+        self.calculate_columns()
+
+    def calculate_columns(self):
+        self.columns = []
         for character in range(len(self.lines[0])):
             colLine = ""
             for line in self.lines:
                 colLine += line[character]
             self.columns.append(colLine)
-
     def get_value(self, iteration_list: [str]) -> int:
         resultValue = 0
         for i, line in enumerate(iteration_list):
@@ -38,13 +41,13 @@ class GameBoard:
         self.set_horizontal_value(horizontal_value)
         return horizontal_value
 
+    def set_horizontal_value(self, value: int):
+        self.horizontal_value = value
+
     def get_vertical_value(self) -> int:
         vertical_value = self.get_value(self.columns)
         self.set_vertical_value(vertical_value)
         return vertical_value
-
-    def set_horizontal_value(self, value: int):
-        self.horizontal_value = value
 
     def set_vertical_value(self, value: int):
         self.vertical_value = value
@@ -81,7 +84,7 @@ def calculate_part_2(games: [GameBoard]) -> int:
     for game in games:
         game_value = 0
         for i, line in enumerate(game.lines):
-            if game_value == 0:
+            # if game_value == 0:
                 for j, character in enumerate(line):
                     if game_value != 0:
                         break
@@ -93,18 +96,20 @@ def calculate_part_2(games: [GameBoard]) -> int:
                     else:
                         lineCopies[i] = lineCopies[i][:j] + '#' + lineCopies[i][j+1:]
                         gameCopy = GameBoard(lineCopies)
+                    gameCopy.calculate_columns()
                     hor_value = gameCopy.get_horizontal_value()
                     if hor_value > 0 and hor_value != game.horizontal_value:
-                        game_value = 100 * hor_value
+                        game_value += 100 * hor_value
                         break
                     else:
                         vert_value = gameCopy.get_vertical_value()
                         if vert_value > 0 and vert_value != game.vertical_value:
-                            game_value = vert_value
+                            game_value += vert_value
                             break
-            else:
-                return_value += game_value
-                break
+            # else:
+                 # return_value += game_value
+                # break
+        return_value += game_value
     return return_value
 
 def main():
