@@ -84,31 +84,27 @@ def calculate_part_2(games: [GameBoard]) -> int:
     for game in games:
         game_value = 0
         for i, line in enumerate(game.lines):
-            # if game_value == 0:
-                for j, character in enumerate(line):
-                    if game_value != 0:
+            for j, character in enumerate(line):
+                if game_value != 0:
+                    break
+                lineCopies = game.lines.copy()
+                gameCopy: GameBoard
+                if character == '#':
+                    lineCopies[i] = lineCopies[i][:j] + '.' + lineCopies[i][j+1:]
+                    gameCopy = GameBoard(lineCopies)
+                else:
+                    lineCopies[i] = lineCopies[i][:j] + '#' + lineCopies[i][j+1:]
+                    gameCopy = GameBoard(lineCopies)
+                gameCopy.calculate_columns()
+                hor_value = gameCopy.get_horizontal_value()
+                if hor_value > 0 and hor_value != game.horizontal_value:
+                    game_value += 100 * hor_value
+                    break
+                else:
+                    vert_value = gameCopy.get_vertical_value()
+                    if vert_value > 0 and vert_value != game.vertical_value:
+                        game_value += vert_value
                         break
-                    lineCopies = game.lines.copy()
-                    gameCopy: GameBoard
-                    if character == '#':
-                        lineCopies[i] = lineCopies[i][:j] + '.' + lineCopies[i][j+1:]
-                        gameCopy = GameBoard(lineCopies)
-                    else:
-                        lineCopies[i] = lineCopies[i][:j] + '#' + lineCopies[i][j+1:]
-                        gameCopy = GameBoard(lineCopies)
-                    gameCopy.calculate_columns()
-                    hor_value = gameCopy.get_horizontal_value()
-                    if hor_value > 0 and hor_value != game.horizontal_value:
-                        game_value += 100 * hor_value
-                        break
-                    else:
-                        vert_value = gameCopy.get_vertical_value()
-                        if vert_value > 0 and vert_value != game.vertical_value:
-                            game_value += vert_value
-                            break
-            # else:
-                 # return_value += game_value
-                # break
         return_value += game_value
     return return_value
 
