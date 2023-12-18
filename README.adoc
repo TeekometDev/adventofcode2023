@@ -1,0 +1,16 @@
+= TeekometDev Advent of Code 2023 Repository
+
+NOTE: The following solutions aren't working correctly
+
+[cols="1,1,2"]
+|====
+|Day |Task |Description
+
+|12
+|2
+|Runtime to high
+
+|13
+|2
+|Works for test values but not for provided input
+|====
