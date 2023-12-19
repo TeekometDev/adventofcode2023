@@ -29,12 +29,10 @@ def calculate_weight_north(input_data: [str]) -> int:
     return weight
 
 def get_column_weight_north(input_data: str) -> int:
-    print('Column: ', input_data)
     res_value = 0
     for element_nr, element in enumerate(input_data):
         if (element) == 'O':
             res_value += len(input_data) - element_nr
-    print('Result: ', res_value)
     return res_value
 
 def create_prototype_line(size: int) -> str:
